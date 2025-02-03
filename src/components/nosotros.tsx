@@ -29,11 +29,9 @@ const Nosotros: FunctionComponent = () => {
         };
     }, []);
 
-    const text = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia bibendum nulla sed consectetur. 
-    Donec ullamcorper nisl id nisl scelerisque, sit amet consequat lorem feugiat. Sed et ante id arcu dictum feugiat. 
-    Sed pharetra, nisi eget pharetra posuere, ante felis consectetur velit, non congue sapien dui eu dui. Aenean dapibus 
-    vulputate turpis id hendrerit. Ut id libero sit amet lorem vulputate feugiat. Nam sit amet purus erat. Mauris non felis 
-    nec leo vulputate posuere non non enim. Fusce sit amet lectus eget ante tincidunt lacinia. Nulla facilisi.`;
+    const text = `En DIVE EVOLUTION, más de 25 años de experiencia nos respaldan. Somos un Centro de Enseñanza 
+    Recreativa certificado por PSS (Professional Scuba School), una de las organizaciones de formación de buceadores 
+    más prestigiosas del mundo`;
 
     const imageUrls: string[] = [
         "/images/nosotros1.jpg",
@@ -56,11 +54,11 @@ const Nosotros: FunctionComponent = () => {
             </h2>
 
             {/* IMÁGENES */}
-            <div className="w-[70%] h-[60%] flex flex-row justify-around">
+            <div className="w-[1000px] h-[60%] flex flex-row justify-around">
                 {imageUrls.map((url, index) => (
                     <div
                         key={index}
-                        className={`w-[15%] h-[70%] bg-red-500 bg-cover bg-center opacity-0 scale-75 translate-y-10 transform transition-all duration-[1500ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${inView ? 'opacity-100 scale-100 translate-y-0' : ''}`}
+                        className={`w-[300px] h-[80%] bg-cover bg-center opacity-0 scale-75 translate-y-10 transform transition-all duration-[1500ms] ease-[cubic-bezier(0.25,0.1,0.25,1)] ${inView ? 'opacity-100 scale-100 translate-y-0' : ''}`}
                         style={{
                             backgroundImage: `url('${url}')`,
                             marginTop: marginTopValues[index],
@@ -71,7 +69,7 @@ const Nosotros: FunctionComponent = () => {
 
             {/* TEXTO */}
             <span
-                className={`text-gray-500 text-lg px-36 opacity-0 translate-y-5 transition-all duration-1000 ease-out ${inView ? 'opacity-100 translate-y-0' : ''}`}
+                className={`text-black text-lg px-36 opacity-0 translate-y-5 transition-all duration-1000 ease-out ${inView ? 'opacity-100 translate-y-0' : ''}`}
             >
                 {text}
             </span>
