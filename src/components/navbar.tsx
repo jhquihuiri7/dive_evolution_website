@@ -22,17 +22,17 @@ const Navbar: FunctionComponent = () => {
   return (
     <nav
       className={`fixed w-full top-0 left-0 z-50 shadow-md transition-colors duration-300 ${
-        scrolled ? "bg-white text-black" : "bg-transparent group"
+        scrolled ? "bg-white text-black" : "bg-transparent text-white group"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo y Nombre de la Empresa */}
           <div className="flex items-center space-x-2">
-            <img src="/logo.svg" alt="Logo" className="h-10 w-10" />
+            <img src="/logo.png" alt="Logo" className="h-10" />
             <span
-              className={`text-xl font-bold transition-colors duration-300 ${
-                scrolled ? "text-black" : "text-white group-hover:text-black"
+              className={`text-xl font-bold${
+                scrolled ? "text-black" : "text-white"
               }`}
             >
               Dive Evolution
@@ -43,8 +43,8 @@ const Navbar: FunctionComponent = () => {
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`focus:outline-none transition-colors duration-300 ${
-                scrolled ? "text-black" : "text-white group-hover:text-black"
+              className={`${
+                scrolled ? "text-black" : "text-white"
               }`}
             >
               {menuOpen ? <X size={28} /> : <Menu size={28} />}
@@ -54,7 +54,7 @@ const Navbar: FunctionComponent = () => {
           {/* Menú de navegación */}
           <div
             className={`absolute top-16 left-0 w-full md:static md:w-auto md:flex ${
-              menuOpen ? "block bg-white md:bg-transparent" : "hidden"
+              menuOpen ? "block text-black bg-white md:bg-transparent" : "hidden"
             }`}
           >
             <ul className="md:flex md:space-x-6 text-center py-2 md:py-0">
@@ -62,8 +62,8 @@ const Navbar: FunctionComponent = () => {
                 <li key={item}>
                   <a
                     href="#"
-                    className={`block px-4 py-2 md:p-0 transition-colors duration-300 ${
-                      scrolled ? "text-black" : "text-white group-hover:text-black"
+                    className={`block px-4 py-2 md:p-0 ${
+                      scrolled ? "text-black" : (menuOpen ? "text-black": "text-white")
                     }`}
                   >
                     {item}

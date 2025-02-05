@@ -29,7 +29,6 @@
 }
 
 .embla__slide__img {
-  border-radius: 1.8rem;
   display: block;
   height: var(--slide-height);
   width: 100%;
@@ -116,7 +115,6 @@
   box-shadow: inset 0 0 0 0.2rem var(--text-body);
 }
 .embla__parallax {
-  border-radius: 1.8rem;
   height: 100%;
   overflow: hidden;
 }
