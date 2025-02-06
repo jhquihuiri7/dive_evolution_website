@@ -41,9 +41,9 @@ const Header:FunctionComponent = () => {
 				<div className= {`transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 
 				duration-700 ease-out w-2/3 sm:w-2/3 h-[125px] bg-[#ffc404] text-lg sm:text-2xl flex flex-row justify-left items-center px-5 sm:px-10`}>Descubre la magia del mundo submarino con quienes han hecho del buceo su vida. </div>
 				<div className={`transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 
-				duration-700 ease-out w-full h-[125px] bg-[#ffc404] text-4xl flex flex-row justify-left items-center px-5 sm:px-10`}>
-					<a href='https://www.youtube.com/'>
-					    <div className='flex flex-row justify-left items-center text-base sm:text-lg' >
+				duration-700 ease-out w-full h-[125px] bg-[#ffc404] text-4xl flex flex-row justify-between items-center px-5 sm:px-10`}>
+					<a href='https://www.youtube.com/' className='w-full'>
+					    <div className='flex flex-row justify-between items-center text-base sm:text-lg' >
 					     <FontAwesomeIcon icon={faCirclePlay} size={iconSize}/>
 						 <div className='w-full'>
 						   <p className='mx-5 sm:mx-10 text-gray-500'>Reproduce un video para conocer <br/>nuestra experiencia</p>
