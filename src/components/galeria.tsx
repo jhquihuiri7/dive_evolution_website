@@ -11,7 +11,6 @@ import {
   PrevButton,
   usePrevNextButtons
 } from './EmblaCarouselArrowButtons'
-import { DotButton, useDotButton } from './EmblaCarouselDotButton'
 
 const TWEEN_FACTOR_BASE = 0.2
 
@@ -26,8 +25,6 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   const tweenFactor = useRef(0)
   const tweenNodes = useRef<HTMLElement[]>([])
 
-  const { selectedIndex, scrollSnaps, onDotButtonClick } =
-    useDotButton(emblaApi)
 
   const {
     prevBtnDisabled,
@@ -102,7 +99,12 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
   }, [emblaApi, tweenParallax])
 
   return (
-    <div className="embla">
+    <div className="embla flex flex-row">
+      <div className="embla__controls">
+          <div className="embla__buttons">
+            <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
+          </div>
+        </div>
       <div className="embla__viewport" ref={emblaRef}>
         <div className="embla__container">
           {slides.map((item, index) => (
@@ -120,23 +122,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
           ))}
         </div>
       </div>
-
       <div className="embla__controls">
         <div className="embla__buttons">
-          <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
-        </div>
-
-        <div className="embla__dots">
-          {scrollSnaps.map((_, index) => (
-            <DotButton
-              key={index}
-              onClick={() => onDotButtonClick(index)}
-              className={'embla__dot'.concat(
-                index === selectedIndex ? ' embla__dot--selected' : ''
-              )}
-            />
-          ))}
         </div>
       </div>
     </div>
