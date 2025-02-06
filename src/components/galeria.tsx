@@ -1,5 +1,7 @@
 "use client"
 import React, { useCallback, useEffect, useRef } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import {
   EmblaCarouselType,
   EmblaEventType,
@@ -116,6 +118,9 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
                     src={`${item}`}
                     alt="Your alt text"
                   />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <FontAwesomeIcon icon={faCirclePlus} size="2x" style={{ color: "#ffc404"}}/>
+                  </div>
                 </div>
               </div>
             </div>

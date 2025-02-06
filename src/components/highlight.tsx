@@ -15,6 +15,10 @@ const IMAGES = [
 const Highlight:FunctionComponent = () => {
   return (
     <div className='flex flex-col justify-center items-center w-full h-screen bg-[url("/images/Imagen1.png")] bg-cover bg-center'>
+      <div className='my-10'>
+        <h2 className='text-6xl font-bold text-white'>Nosotros</h2>
+        <div className='w-full h-4 bg-[#ffc404]'></div>
+      </div>
       <EmblaCarousel slides={IMAGES} options={OPTIONS}></EmblaCarousel>   
     </div>
   );
