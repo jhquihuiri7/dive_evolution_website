@@ -1,10 +1,7 @@
 .embla {
-  width: 80%; /* Asegura que el contenedor ocupe el 100% del ancho de la pantalla */
   max-width: 100%; /* Elimina el límite de 48rem */
   margin: 0 auto; /* Elimina cualquier margen horizontal adicional */
-  --slide-height: 400px;
   --slide-spacing: 1rem;
-  --slide-size: 50%;
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño del contenedor */
   overflow: hidden; /* Evita el desbordamiento horizontal */
 }
@@ -18,7 +15,6 @@
 
 .embla__slide {
   transform: translate3d(0, 0, 0);
-  flex: 0 0 var(--slide-size);
   min-width: 0;
   padding-left: var(--slide-spacing);
   box-sizing: border-box; /* Asegura que el padding no afecte el tamaño del slide */
@@ -30,7 +26,7 @@
 
 .embla__slide__img {
   display: block;
-  height: var(--slide-height);
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
@@ -38,11 +34,9 @@
   display: grid;
   grid-template-columns: auto 1fr;
   justify-content: space-between;
-  gap: 1.2rem;
   margin-top: 1.8rem;
 }
 .embla__buttons {
-  display: grid;
   grid-template-columns: repeat(2, 1fr);
   align-items: center;
 }
@@ -74,44 +68,6 @@
 .embla__button__svg {
   width: 35%;
   height: 35%;
-}
-.embla__dots {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  align-items: center;
-  margin-right: calc((2.6rem - 1.4rem) / 2 * -1);
-}
-.embla__dot {
-  -webkit-tap-highlight-color: rgba(var(--text-high-contrast-rgb-value), 0.5);
-  -webkit-appearance: none;
-  appearance: none;
-  background-color: transparent;
-  touch-action: manipulation;
-  display: inline-flex;
-  text-decoration: none;
-  cursor: pointer;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  width: 2.6rem;
-  height: 2.6rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 50%;
-}
-.embla__dot:after {
-  box-shadow: inset 0 0 0 0.2rem var(--detail-medium-contrast);
-  width: 1.4rem;
-  height: 1.4rem;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  content: '';
-}
-.embla__dot--selected:after {
-  box-shadow: inset 0 0 0 0.2rem var(--text-body);
 }
 .embla__parallax {
   height: 100%;

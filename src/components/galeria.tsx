@@ -1,5 +1,5 @@
 "use client"
-import React, { useCallback, useEffect, useRef } from 'react'
+import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faCirclePlus } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -100,17 +100,39 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
       .on('slideFocus', tweenParallax)
   }, [emblaApi, tweenParallax])
 
+  const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+    const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
+    
+      useEffect(() => {
+        if (typeof window !== "undefined") {
+          const checkIfMobile = window.innerWidth <= 900; // Definir un límite para dispositivos móviles
+          setIsMobile(checkIfMobile); // Actualizar el estado según el tamaño de la ventana
+    
+          setIsLandscape(window.innerWidth > window.innerHeight);
+          
+          const handleResize = () => {
+            setIsMobile(window.innerWidth <= 900); // Verificar en cada redimensionado si es móvil
+            setIsLandscape(window.innerWidth > window.innerHeight);
+          };
+    
+          window.addEventListener("resize", handleResize);
+          return () => window.removeEventListener("resize", handleResize);
+        }
+      }, []);
+    
+      if (isLandscape === null) return null;
+
   return (
     <div className="embla flex flex-row">
       <div className="embla__controls">
-          <div className="embla__buttons">
+          <div className={`embla__buttons ${(isMobile && !isLandscape) ? "hidden" : "grid"}`}>
             <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
           </div>
         </div>
       <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
+        <div className={`embla__container ${(isMobile && isLandscape) ? "h-[200px] w-[90%]" : (isMobile) ? "h-[400px] w-full" :"h-[400px] w-[80%]"}`}>
           {slides.map((item, index) => (
-            <div className="embla__slide" key={index}>
+            <div className={`embla__slide flex-none ${(isMobile && isLandscape) ? "w-1/2" : (isMobile) ? "w-[70%]" : "w-1/2"}`} key={index}>
               <div className="embla__parallax">
                 <div className="embla__parallax__layer">
                   <img
@@ -128,7 +150,7 @@ const EmblaCarousel: React.FC<PropType> = (props) => {
         </div>
       </div>
       <div className="embla__controls">
-        <div className="embla__buttons">
+        <div className={`embla__buttons ${(isMobile && !isLandscape) ? "hidden" : "grid"}`}>
           <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
         </div>
       </div>
