@@ -49,7 +49,7 @@ const Header:FunctionComponent = () => {
 	if (isLandscape === null) return null;
 
     return(
-        <div className="bg-[url('/images/background1.jpeg')] text-black bg-cover bg-center w-full h-screen text-[13px] text-[#97979d] flex flex-col justify-between overflow-hidden">
+        <div className="bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739048429/DIVE_EVOLUTION_2025/HEADER/background-min_hhsp6g.webp')] text-black bg-cover bg-center w-full h-screen text-[13px] text-[#97979d] flex flex-col justify-between overflow-hidden">
 			<Navbar></Navbar>
 			<div className="h-20"></div>
 			<div className='w-full flex flex-row justify-between items-start px-5 sm:px-10'>
