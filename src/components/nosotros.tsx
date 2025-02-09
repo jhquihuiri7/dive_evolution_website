@@ -9,27 +9,27 @@ const Nosotros: FunctionComponent = () => {
 
     const images = [
         {
-            "img": "/images/nosotros1.jpg",
+            "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros1-min_rgjfsr.webp",
             "descripcion": "Zalophus wollebaeki, isla San Cristóbal, Galápagos."
         },
         {
-            "img": "/images/nosotros2.jpg",
+            "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros2-min_t9zisb.webp",
             "descripcion": "Dive, isla Isabela."
         },
         {
-            "img": "/images/nosotros3.jpg",
+            "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros3-min_pryimu.webp",
             "descripcion": "Sesuvium portulacastru, isla Floreana, Galápagos."
         },
         {
-            "img": "/images/nosotros4.jpg",
+            "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros4-min_ual3i8.webp",
             "descripcion": "Kicker rock, San Cristóbal, Galápagos."
         },
         {
-            "img": "/images/nosotros5.jpg",
+            "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros5-min_lm2hqd.webp",
             "descripcion": "Diving, Santa Cruz Galápagos."
         },
         {
-            "img": "/images/nosotros6.jpg",
+            "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros6-min_xkgphx.webp",
             "descripcion": "Fregata minor, isla San Cristóbal, Galápagos."
         }
     ]
