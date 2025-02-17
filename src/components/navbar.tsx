@@ -61,7 +61,7 @@ const Navbar: FunctionComponent = () => {
               {["Inicio", "Tours", "Cursos", "Nosotros"].map((item) => (
                 <li key={item}>
                   <a
-                    href="#"
+                    href="http://localhost:3000/tours"
                     className={`block px-4 py-2 md:p-0 ${
                       scrolled ? "text-black" : (menuOpen ? "text-black": "text-white")
                     }`}
