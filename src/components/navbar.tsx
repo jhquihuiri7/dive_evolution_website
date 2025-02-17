@@ -6,6 +6,14 @@ const Navbar: FunctionComponent = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
+  // Los elementos de navegación están ahora definidos aquí dentro del componente
+  const navItems = [
+    { text: "Inicio", url: "/" },
+    { text: "Tours", url: "/tours" },
+    { text: "Cursos", url: "/cursos" },
+    { text: "Nosotros", url: "/nosotros" },
+  ];
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > 0) {
@@ -58,15 +66,15 @@ const Navbar: FunctionComponent = () => {
             }`}
           >
             <ul className="md:flex md:space-x-6 text-center py-2 md:py-0">
-              {["Inicio", "Tours", "Cursos", "Nosotros"].map((item) => (
-                <li key={item}>
+              {navItems.map(({ text, url }) => (
+                <li key={text}>
                   <a
-                    href="http://localhost:3000/tours"
+                    href={url}
                     className={`block px-4 py-2 md:p-0 ${
-                      scrolled ? "text-black" : (menuOpen ? "text-black": "text-white")
+                      scrolled ? "text-black" : menuOpen ? "text-black" : "text-white"
                     }`}
                   >
-                    {item}
+                    {text}
                   </a>
                 </li>
               ))}
