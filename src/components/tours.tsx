@@ -34,7 +34,8 @@ const Tour: FunctionComponent<TourProps> = ({ title, description, price, imageUr
     >
       <img
         src={imageUrl}
-        style={{ transform: `rotate(${rotation}deg)` }} // Rotación aleatoria
+        style={{ transform: `rotate(${rotation}deg)` }} 
+        className='w-[80%]'
       />
       <div className='w-full flex flex-row justify-between my-5'>
         <span className='font-bold text-3xl'>{title}</span>
@@ -60,9 +61,29 @@ const Tours: FunctionComponent = () => {
     { title: 'Snorkeling con Tiburones', description: 'Vive la emoción de nadar...', price: 220, imageUrl: 'https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros6-min_xkgphx.webp' },
     { title: 'Aventura en la Isla Santa Cruz', description: 'Disfruta de una excursión...', price: 180, imageUrl: 'https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros6-min_xkgphx.webp' },
   ];
-
+  const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+          const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
+              
+          useEffect(() => {
+              if (typeof window !== "undefined") {
+                  const checkIfMobile = window.innerWidth <= 900; // Definir un límite para dispositivos móviles
+                  setIsMobile(checkIfMobile); // Actualizar el estado según el tamaño de la ventana
+      
+                  setIsLandscape(window.innerWidth > window.innerHeight);
+                  
+                  const handleResize = () => {
+                      setIsMobile(window.innerWidth <= 900); // Verificar en cada redimensionado si es móvil
+                      setIsLandscape(window.innerWidth > window.innerHeight);
+                  };
+      
+                  window.addEventListener("resize", handleResize);
+                  return () => window.removeEventListener("resize", handleResize);
+              }
+          }, []);
+      
+          if (isLandscape === null) return null;
   return (
-    <div className='w-full h-fit px-[10%] flex flex-row flex-wrap justify-between'>
+    <div className={`${(isLandscape && isMobile) ? "px-5" : "px-[10%]"} w-full h-fit flex flex-row flex-wrap justify-between`}>
       {tourList.map((tour, index) => (
         <Tour
           key={index}

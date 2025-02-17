@@ -1,21 +1,41 @@
 "use client"
-import React, { FunctionComponent } from 'react';
+import React, { FunctionComponent, useState, useEffect } from 'react';
 import Navbar from './navbar';
 
 const HeaderTour:FunctionComponent = () => {
-
+    const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+			const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
+				
+			useEffect(() => {
+				if (typeof window !== "undefined") {
+					const checkIfMobile = window.innerWidth <= 900; // Definir un límite para dispositivos móviles
+					setIsMobile(checkIfMobile); // Actualizar el estado según el tamaño de la ventana
+		
+					setIsLandscape(window.innerWidth > window.innerHeight);
+					
+					const handleResize = () => {
+						setIsMobile(window.innerWidth <= 900); // Verificar en cada redimensionado si es móvil
+						setIsLandscape(window.innerWidth > window.innerHeight);
+					};
+		
+					window.addEventListener("resize", handleResize);
+					return () => window.removeEventListener("resize", handleResize);
+				}
+			}, []);
+		
+			if (isLandscape === null) return null;
     return(
         <div className="w-full h-screen">
 			<div className='w-full h-[90%] bg-[#00273c] flex flex-col justify-between items-center'>
 			    <Navbar></Navbar>
-			    <div className='w-full h-screen flex flex-row justify-between'>
-					<div className="w-1/2 h-full pl-20 flex flex-col justify-center items-center text-6xl text-white font-bold bg-center bg-no-repeat bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769936/DIVE_EVOLUTION_2025/HEADER/SANCRISTOBAL_daeo0k.png')]"
+			    <div className={`w-full h-screen flex ${(isLandscape ? "flex-row justify-between" : "flex-col")}`}>
+					<div className={`${(isLandscape && isMobile)? "w-1/2 pl-20 text-5xl": (isMobile) ? "w-full px-5 text-5xl" : "w-1/2 pl-20 text-6xl"} h-full  flex flex-col justify-center items-center text-white font-bold bg-center bg-no-repeat bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769936/DIVE_EVOLUTION_2025/HEADER/SANCRISTOBAL_daeo0k.png')]`}
 					style={{
 						backgroundSize: '100%',
 					  }}>
 					    Encuentra destinos maravisollos en San Cristobal
 					</div>
-					<div className="w-1/2 h-screen bg-left bg-cover bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png')]">
+					<div className={`${isLandscape ? "w-1/2 bg-left":"w-full bg-center"} h-screen  bg-cover bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png')]`}>
 					    
 					</div>
 				</div>
