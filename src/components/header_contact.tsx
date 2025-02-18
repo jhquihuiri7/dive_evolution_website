@@ -34,7 +34,7 @@ const HeaderContact:FunctionComponent = () => {
 			<Navbar></Navbar>
 			<div className='w-full h-full flex flex-row justify-end'>
 				<div className="absolute w-1/2 h-full flex flex-row justify-left bg-center bg-cover bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739048429/DIVE_EVOLUTION_2025/HEADER/background-min_hhsp6g.webp')]"></div>
-				<div className='w-full h-full flex flex-col justify-center items-center px-32 mt-5'>
+				<div className='w-full h-full flex flex-col justify-center items-start px-32 mt-5'>
 				    <div className={`${ isMobile ? "text-4xl z-10" : "text-6xl"} font-bold mb-10`}>{(isMobile && isLandscape) ? "" : "Contactanos"}</div>
 				    <div className={`w-full flex ${(isMobile && !isLandscape) ? "flex-col" : "flex-row"} justify-left items-center z-10`}>
 				        <div className={`mr-20 ${(isMobile && isLandscape) ? "h-[250px] py-5" : (isMobile) ? "h-[300px] py-10 mr-0 mb-10" : "h-[300px] py-10"} px-5 flex flex-col justify-between items-center bg-[#f6f6fa] rounded-xl w-[325px]`}>

@@ -43,7 +43,7 @@ const ContactBody:FunctionComponent = () => {
           if (isLandscape === null) return null;
   return (
     <div className={`w-full h-fit flex ${(isMobile && !isLandscape) ? "flex-col" : "flex-row"} justify-around my-10`}>
-        <div className="w-[40%] bg-white p-6 rounded-lg shadow-lg">
+        <div className={`${(isMobile && !isLandscape) ? "w-full" : "w-[40%]"}  bg-white p-6 rounded-lg shadow-lg`}>
         <h2 className="text-xl font-bold mb-4">Contáctanos</h2>
         <div>
             <form onSubmit={handleSubmit} className="space-y-4">
@@ -85,7 +85,7 @@ const ContactBody:FunctionComponent = () => {
             </div>
         </div>
         <iframe 
-              width="50%" 
+              width={`${(isMobile && !isLandscape) ? "100%" : "50%"}`}
               height="500" 
               id="gmap_canvas" 
               src="https://maps.google.com/maps?q=-0.9015394,-89.6110842&z=19&output=embed">
