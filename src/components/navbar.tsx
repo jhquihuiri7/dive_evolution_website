@@ -11,7 +11,7 @@ const Navbar: FunctionComponent = () => {
     { text: "Inicio", url: "/" },
     { text: "Tours", url: "/tours" },
     { text: "Cursos", url: "/cursos" },
-    { text: "Nosotros", url: "/nosotros" },
+    { text: "Contacto", url: "/contacto" },
   ];
 
   useEffect(() => {

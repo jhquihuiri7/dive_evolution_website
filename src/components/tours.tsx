@@ -24,7 +24,27 @@ const Tour: FunctionComponent<TourProps> = ({ title, description, price, imageUr
     triggerOnce: true, // Solo disparar la animación una vez cuando entra en la vista
     threshold: 0.5, // El componente debe estar al menos al 50% visible para activar la animación
   });
-
+  const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+          const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
+              
+          useEffect(() => {
+              if (typeof window !== "undefined") {
+                  const checkIfMobile = window.innerWidth <= 900; // Definir un límite para dispositivos móviles
+                  setIsMobile(checkIfMobile); // Actualizar el estado según el tamaño de la ventana
+      
+                  setIsLandscape(window.innerWidth > window.innerHeight);
+                  
+                  const handleResize = () => {
+                      setIsMobile(window.innerWidth <= 900); // Verificar en cada redimensionado si es móvil
+                      setIsLandscape(window.innerWidth > window.innerHeight);
+                  };
+      
+                  window.addEventListener("resize", handleResize);
+                  return () => window.removeEventListener("resize", handleResize);
+              }
+          }, []);
+      
+          if (isLandscape === null) return null;
   return (
     <div
       ref={ref} // Asignar el ref a este div
@@ -35,7 +55,7 @@ const Tour: FunctionComponent<TourProps> = ({ title, description, price, imageUr
       <img
         src={imageUrl}
         style={{ transform: `rotate(${rotation}deg)` }} 
-        className='w-[80%]'
+        className={`${(isMobile && !isLandscape) ? "w-full" : "w-[70%]"}`}
       />
       <div className='w-full flex flex-row justify-between my-5'>
         <span className='font-bold text-3xl'>{title}</span>
