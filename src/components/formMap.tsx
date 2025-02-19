@@ -1,7 +1,7 @@
 import React, { FunctionComponent, useState, useEffect} from 'react';
 import { ShimmerButton } from './magicui/shimmer-button';
 
-const ContactBody:FunctionComponent = () => {
+const FormMap:FunctionComponent = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
@@ -80,7 +80,7 @@ const ContactBody:FunctionComponent = () => {
             required
           ></textarea>
         </div>
-        <ShimmerButton className="w-full text-white p-2 rounded-lg">Enviar</ShimmerButton>
+        <ShimmerButton className="w-full text-black p-2 rounded-lg" background="rgba(255, 196, 4, 1)">Enviar</ShimmerButton>
             </form>
             </div>
         </div>
@@ -95,4 +95,4 @@ const ContactBody:FunctionComponent = () => {
   );
 }
 
-export default ContactBody;
+export default FormMap;

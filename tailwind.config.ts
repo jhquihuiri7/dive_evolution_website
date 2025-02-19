@@ -80,7 +80,10 @@ export default {
   					transform: 'translateZ(0) rotate(360deg)'
   				}
   			}
-  		}
+  		},
+		boxShadow: {
+		'inner-lg': 'inset 4px 4px 10px rgba(0, 0, 0, 0.8)',
+		}
   	}
   },
   plugins: [

@@ -37,7 +37,7 @@ const Footer: FunctionComponent = () => {
             </span>
             </div>
             <div className={`text-justify ${(isMobile && isLandscape) ? "w-3/5 py-2" : (isMobile) ? "w-4/5 py-2" : "w-2/5"}`}>
-            Nos esforzamos por brindarte datos precisos y confiables. Para una asesoría personalizada, contáctanos; con gusto te atenderemos.
+            Nos esforzamos por brindarte datos precisos y confiables. Para una asesoría personalizada, <span className="font-semibold">contáctanos</span>; con gusto te atenderemos.
             </div>
             <div className="flex flex-col justify-center items-center">
                 <div className="w-24 flex flex-row justify-between">

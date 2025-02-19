@@ -14,7 +14,7 @@ const Nosotros: FunctionComponent = () => {
         },
         {
             "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros2-min_t9zisb.webp",
-            "descripcion": "Dive, isla Isabela."
+            "descripcion": "Isla Isabela, Galápagos."
         },
         {
             "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros3-min_pryimu.webp",
@@ -26,7 +26,7 @@ const Nosotros: FunctionComponent = () => {
         },
         {
             "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros5-min_lm2hqd.webp",
-            "descripcion": "Diving, Santa Cruz Galápagos."
+            "descripcion": "Isla San Cristóbal, Galápagos."
         },
         {
             "img": "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros6-min_xkgphx.webp",
@@ -60,11 +60,13 @@ const Nosotros: FunctionComponent = () => {
         if (isLandscape === null) return null;
 
     return (
-        <div className={`${(isMobile && isLandscape) ? "h-fit" : "h-screen" } w-full flex flex-col justify-around items-center p-10`}>
+        <div className={`${(isMobile && isLandscape) ? "h-fit" : "h-screen" } bg-black w-full flex flex-col justify-around items-center p-10`}>
             {/* TÍTULO */}
-            <div className='w-[300px] mt-6 flex flex-col justify-center items-center'>
-                <h2 className='text-6xl font-bold text-black'>Nosotros</h2>
-                <div className='w-full h-4 bg-[#ffc404]'></div>
+            <div className="w-full flex flex-row justify-start mb-5">
+                <div className='w-[400px] mt-6 flex flex-col justify-center items-center'>
+                    <h2 className='text-5xl font-bold text-white'>¿Quiénes somos? </h2>
+                    <div className='w-[80%] h-2 bg-[#ffc404]'></div>
+                </div>
             </div>
 
             {/* IMÁGENES */}
@@ -78,7 +80,7 @@ const Nosotros: FunctionComponent = () => {
                         marginTop: (isMobile && isLandscape) ? "10px" : (isMobile) ? "10px" : marginTopValues[index],
                     }}
                 >
-                    <div className="w-full h-[100px] bg-[#163E64] hidden group-hover:flex items-center justify-center text-white text-center px-2">
+                    <div className="w-full h-[100px] bg-[#163E64] hidden group-hover:flex items-center justify-center text-xs text-white text-center px-2">
                         {image.descripcion}
                     </div>
                 </div>
@@ -88,7 +90,7 @@ const Nosotros: FunctionComponent = () => {
 
             {/* TEXTO */}
             <span
-                className={` ${(isMobile && isLandscape) ? "px-[10%]" : (isMobile) ? "px-[5%]" :"px-[25%]"} text-black text-lg text-center mt-5`}
+                className={` ${(isMobile && isLandscape) ? "px-[10%]" : (isMobile) ? "px-[5%]" :"px-[25%]"} text-white text-lg text-center mt-5`}
             >
                 {text}
             </span>

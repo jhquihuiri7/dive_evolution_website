@@ -51,7 +51,7 @@ const Navbar: FunctionComponent = () => {
           <div className="md:hidden">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className={`${
+              className={`text-lg ${
                 scrolled ? "text-black" : "text-white"
               }`}
             >
@@ -61,7 +61,7 @@ const Navbar: FunctionComponent = () => {
 
           {/* Menú de navegación */}
           <div
-            className={`absolute top-16 left-0 w-full md:static md:w-auto md:flex ${
+            className={`text-lg absolute top-16 left-0 w-full md:static md:w-auto md:flex ${
               menuOpen ? "block text-black bg-white md:bg-transparent" : "hidden"
             }`}
           >
