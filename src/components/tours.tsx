@@ -48,7 +48,7 @@ const Tour: FunctionComponent<TourProps> = ({ title, description, price, imageUr
   return (
     <div
       ref={ref} // Asignar el ref a este div
-      className={`h-fit w-[300px] flex flex-col justify-center items-center m-10 transition-all duration-500 ease-in-out transform ${
+      className={`h-fit w-[300px] flex flex-col justify-center items-center m-10 transition-all duration-500 ease-in-out hover:scale-125 transform ${
         inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`} // Animación: cuando entra en la vista, se desvanece y se desplaza hacia arriba
     >
