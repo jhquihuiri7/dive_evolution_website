@@ -2,7 +2,11 @@
 import React, { FunctionComponent, useState, useEffect } from 'react';
 import Navbar from './navbar';
 
-const HeaderTour:FunctionComponent = () => {
+type HeaderTourProps = {
+    backgroundImage: string;
+};
+
+const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage }) => {
     const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
 			const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
 				
@@ -35,9 +39,12 @@ const HeaderTour:FunctionComponent = () => {
 					  }}>
 					    Encuentra destinos maravisollos en San Cristobal
 					</div>
-					<div className={`${isLandscape ? "w-1/2 bg-left":"w-full bg-center"} h-screen  bg-cover bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png')]`}>
-					    
-					</div>
+					<div
+                      className={`${isLandscape ? "w-1/2 bg-left" : "w-full bg-center"} h-screen bg-cover`}
+                      style={{ backgroundImage: `url(${backgroundImage})` }}
+                    >
+                    </div>
+
 				</div>
 			</div>
       	</div>

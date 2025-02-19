@@ -38,7 +38,7 @@ const HeaderContact:FunctionComponent = () => {
     return(
         <div className="w-full h-screen">
 			<Navbar></Navbar>
-			<div className='w-full h-full flex flex-row justify-end bg-[#0a1d39]'>
+			<div className='w-full h-full flex flex-row justify-end bg-[#00273c]'>
 				<div className="absolute w-1/2 h-full flex flex-row justify-left bg-center bg-cover bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739940793/DIVE_EVOLUTION_2025/CONTACT/EB8A2103-min_tgdwz2.webp')]"></div>
 				<div className='w-full h-full flex flex-col justify-center items-start px-32 mt-5'>
 				    <div className={`text-white ${ isMobile ? "text-4xl z-10" : "text-5xl"} font-bold mb-10`}>{(isMobile && isLandscape) ? "" : "Contacta con nosotros"}</div>
@@ -48,7 +48,7 @@ const HeaderContact:FunctionComponent = () => {
 						animate="visible"
 						variants={cardVariants}
 						className={`mr-20 ${(isMobile && isLandscape) ? "h-[250px] py-5" : (isMobile) ? "h-[300px] py-10 mr-0 mb-10" : "h-[300px] py-10"} px-5 flex flex-col justify-between items-center bg-[#f6f6fa] rounded-xl w-[325px]`}>
-						        <FontAwesomeIcon icon={faLocationDot} size="3x" style={{ color: "#0a1d39" }}/>
+						        <FontAwesomeIcon icon={faLocationDot} size="3x" style={{ color: "#00273c" }}/>
 								<p className='text-3xl font-semibold'>Visítanos</p>
 				        		<p>Nuestras oficinas están situadas en Av. Isabela y Guillermo Vega Gallegos</p>
 				                <ShinyButton className='bg-[#ffc404]'>Escribenos</ShinyButton>

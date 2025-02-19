@@ -15,7 +15,7 @@ const tourList = [
     description_short:
       "Una travesía única en lancha rápida que te llevará a explorar los lugares más impresionantes y la increíble biodiversidad de la isla",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739979427/DIVE_EVOLUTION_2025/TOUR/leon_dormido_lvp66c.jpg",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/upscalemedia-transformed_1_q8skaz.webp",
     type: "Tour Diario",
     include: [
       { icon: faUserShield, item: "Guia Certificado" },
@@ -30,7 +30,7 @@ const tourList = [
       "Embárcate en una aventura única, este tour combina caminata, snorkel y navegación, permitiéndote descubrir paisajes impresionantes",
     type: "Tour Diario",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739979706/DIVE_EVOLUTION_2025/TOUR/TOUR_ESPA%C3%91OLA_jlqwl2.jpg",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/TOUR_ESPA%C3%91OLA_jlqwl2_1_a9o078.webp",
     include: [
       { icon: faUserShield, item: "Guia Certificado" },
       { icon: faUtensils, item: "Almuerzo y Snacks" }
@@ -44,7 +44,7 @@ const tourList = [
       "Navega entre acantilados, cavernas y aguas cristalinas mientras descubres la increíble vida marina de Galápagos",
     type: "Tour Diario",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739063246/DIVE_EVOLUTION_2025/NOSOTROS/nosotros6-min_xkgphx.webp",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/upscalemedia-transformed_2_1_bjapgc.webp",
     include: [
       { icon: faUserShield, item: "Guia Certificado" },
       { icon: faUtensils, item: "Transporte acuático" }
@@ -55,7 +55,7 @@ const tourList = [
 export default function Home() {
   return (
     <div>
-      <HeaderTour/>
+      <HeaderTour backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"/>
       <Tours tourList={tourList}/>
       <Footer/>
     </div>

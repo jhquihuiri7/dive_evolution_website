@@ -17,7 +17,7 @@ const coursesList = [
       "Descubre el fascinante mundo submarino de Galápagos sin necesidad de experiencia previa",
     type: "Curso",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739980841/DIVE_EVOLUTION_2025/CURSOS/scucba_diving_w2lmmh.jpg",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739995792/DIVE_EVOLUTION_2025/CURSOS/scucba_diving_w2lmmh-min_vyscvf.webp",
     include: [
       { icon: faWater, item: "Profundidad 4 - 10 metros" },
       { icon: faToggleOn, item: "Equipo de scuba completo" }
@@ -31,7 +31,7 @@ const coursesList = [
       "Explora aguas cristalinas y descubre la historia oculta en las profundidades",
     type: "Curso",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739981560/DIVE_EVOLUTION_2025/CURSOS/caragua_v2iqcx.jpg",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739995790/DIVE_EVOLUTION_2025/CURSOS/caragua_v2iqcx-min_sxl7ta.webp",
     include: [
       { icon: faWater, item: "Profundidad 15 metros" },
       { icon: faToggleOn, item: "Equipo de scuba completo" }
@@ -45,7 +45,7 @@ const coursesList = [
       "Bucea junto a tiburones martillo y descubre impresionantes paredes volcánicas en la inmersión más icónica de Galápagos.",
     type: "Curso",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739981818/DIVE_EVOLUTION_2025/CURSOS/kicker_rock_vssff0.jpg",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739995791/DIVE_EVOLUTION_2025/CURSOS/kicker_rock_vssff0-min_lftras.webp",
     include: [
       { icon: faWater, item: "Requiere Lic. Open Water Diver" },
       { icon: faToggleOn, item: "Equipo de scuba completo" }
@@ -59,7 +59,7 @@ const coursesList = [
       "Atrévete a explorar cuevas submarinas y sumérgete hasta 38 metros en una experiencia extrema solo para buceadores avanzados.",
     type: "Curso",
     imageUrl:
-      "https://res.cloudinary.com/logicielapplab/image/upload/v1739982006/DIVE_EVOLUTION_2025/CURSOS/cuevas_hitler_xnsnuh.jpg",
+      "https://res.cloudinary.com/logicielapplab/image/upload/v1739995791/DIVE_EVOLUTION_2025/CURSOS/cuevas_hitler_xnsnuh-min_awsc2m.webp",
     include: [
       { icon: faWater, item: "Requiere Lic. Advanced Open Water" },
       { icon: faToggleOn, item: "Equipo de scuba completo" }
@@ -70,7 +70,7 @@ const coursesList = [
 export default function Home() {
   return (
     <div>
-      <HeaderTour/>
+      <HeaderTour backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739996933/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5-min_me12u2.webp"/>
       <Tours tourList={coursesList}/>
       <Footer/>
     </div>
