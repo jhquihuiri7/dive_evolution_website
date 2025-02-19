@@ -37,7 +37,9 @@ const Navbar: FunctionComponent = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo y Nombre de la Empresa */}
           <div className="flex items-center space-x-2">
-            <img src="/logo.png" alt="Logo" className="h-10" />
+            <img src={scrolled ? 
+              "/logo_black.png" : 
+              "/logo.png"} alt="Logo" className="h-10" />
             <span
               className={`text-xl font-bold${
                 scrolled ? "text-black" : "text-white"
