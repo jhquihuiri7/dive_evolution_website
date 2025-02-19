@@ -1,12 +1,16 @@
 "use client"
-import React, { FunctionComponent } from 'react';
+import React, {RefObject } from 'react';
+
 import { useState, useEffect } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowRight, faCirclePlay } from '@fortawesome/free-solid-svg-icons';
 import Navbar from './navbar';
 
+interface SectionProps {
+	refProp: RefObject<HTMLDivElement>;
+  }
 
-const Header:FunctionComponent = () => {
+const Header:React.FC<SectionProps> = ({ refProp }) => {
 	const [show, setShow] = useState(false);
 	const [iconSize, setIconSize] = useState<"2x" | "3x">("2x");
 
@@ -49,15 +53,11 @@ const Header:FunctionComponent = () => {
 	if (isLandscape === null) return null;
 
     return(
-        <div className="bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739048429/DIVE_EVOLUTION_2025/HEADER/background-min_hhsp6g.webp')] text-black bg-cover bg-center w-full h-screen text-[#97979d] flex flex-col justify-between overflow-hidden">
+        <div ref={refProp || undefined} className="bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739048429/DIVE_EVOLUTION_2025/HEADER/background-min_hhsp6g.webp')] text-black bg-cover bg-center w-full h-screen text-[#97979d] flex flex-col justify-between overflow-hidden">
 			<Navbar></Navbar>
 			<div className="h-20"></div>
 			<div className='w-full flex flex-row justify-between items-start px-5 sm:px-10'>
 			    <h1 className={`${(isMobile && isLandscape) ? "text-[40px] leading-[40px]": (isMobile) ? "text-[40px] leading-[40px]" : "text-[90px] leading-[90px]"} font-semibold text-white`}>EXPLORA, <br/>SUMÉRGETE Y VIVE<br/>LA AVENTURA</h1>
-			    <div className='h-full hidden sm:flex flex-col justify-between'>
-					<img src='/images/diveIcon.png' className={`${(isMobile && isLandscape) ? "h-14 w-20":"h-18 w-28"}`}></img>
-					<img src='/images/tourIcon.png' className={`${(isMobile && isLandscape) ? "h-14 w-20":"h-18 w-28"}`}></img>
-				</div>
 			</div>
 			<div className='w-full sm:w-1/2'>
 				<div className= {`${(isMobile && isLandscape) ? "h-[80px] text-base": (isMobile) ? "h-[125px] text-lg": "h-[125px] text-2xl"} transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 

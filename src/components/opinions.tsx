@@ -1,5 +1,5 @@
 "use client"
-import React, { FunctionComponent, useState, useEffect } from 'react';
+import React, {useState, useEffect, RefObject } from 'react';
 
 const reviews = [
   { review: "¡Increíble experiencia! Los instructores son muy profesionales y amigables. Desde el primer momento, me hicieron sentir seguro y cómodo, explicando cada detalle con paciencia. Definitivamente regresaré para más aventuras.", author: "Carlos Mendoza 🤿🐠" },
@@ -8,7 +8,11 @@ const reviews = [
   { review: "Me sentí seguro en todo momento. La seguridad es su prioridad número uno, y eso se nota. Las explicaciones previas a la inmersión fueron detalladas y fáciles de entender, lo que hizo que me relajara y disfrutara cada segundo.", author: "Ana González 🔱🏝️" }
 ];
 
-const Opinions: FunctionComponent = () => {
+interface SectionProps {
+  refProp: RefObject<HTMLDivElement>;
+}
+
+const Opinions: React.FC<SectionProps> = ({ refProp }) => {
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
@@ -37,7 +41,7 @@ const Opinions: FunctionComponent = () => {
   }, []);
   if (isLandscape === null) return null;
   return (
-    <div className='h-screen w-full bg-[url("https://res.cloudinary.com/logicielapplab/image/upload/v1739079631/DIVE_EVOLUTION_2025/REVIEWS/reviews_background_ozbzkr.webp")] bg-cover bg-center flex flex-col justify-center items-center'>
+    <div ref={refProp} className='h-screen w-full bg-[url("https://res.cloudinary.com/logicielapplab/image/upload/v1739079631/DIVE_EVOLUTION_2025/REVIEWS/reviews_background_ozbzkr.webp")] bg-cover bg-center flex flex-col justify-center items-center'>
       <div className={`px-20 ${(isMobile && isLandscape) ? "w-[80%] h-[70%] mt-10": (isMobile) ? "w-[70%] h-[70%] px-5" : "w-[50%] h-[60%]"} bg-white py-10 flex flex-col justify-around items-center`}>
         <h3 className={`${(isMobile && isLandscape) ? "text-[30px] leading-[35px]" : (isMobile) ? "text-[30px] leading-[35px]" : "text-[40px] leading-[45px]"} font-black`}>¿QUE DICEN NUESTROS CLIENTES DE NOSOTROS?</h3>
         <div className='w-full flex flex-row justify-between'>

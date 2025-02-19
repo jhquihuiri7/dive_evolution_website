@@ -1,7 +1,11 @@
 "use client";
-import React, { FunctionComponent, useState, useEffect } from "react";
+import React, {useState, useEffect, RefObject } from "react";
 
-const Nosotros: FunctionComponent = () => {
+interface SectionProps {
+    refProp: RefObject<HTMLDivElement>;
+  }
+
+const Nosotros: React.FC<SectionProps> = ({ refProp }) => {
     
     const text = `En DIVE EVOLUTION, más de 25 años de experiencia nos respaldan. Somos un Centro de Enseñanza 
     Recreativa certificado por PSS (Professional Scuba School), una de las organizaciones de formación de buceadores 
@@ -60,7 +64,7 @@ const Nosotros: FunctionComponent = () => {
         if (isLandscape === null) return null;
 
     return (
-        <div className={`${(isMobile && isLandscape) ? "h-fit" : "h-screen" } bg-black w-full flex flex-col justify-around items-center p-10`}>
+        <div ref={refProp} className={`${(isMobile && isLandscape) ? "h-fit" : "h-screen" } bg-black w-full flex flex-col justify-around items-center p-10`}>
             {/* TÍTULO */}
             <div className="w-full flex flex-row justify-start mb-5">
                 <div className='w-[400px] mt-6 flex flex-col justify-center items-center'>
