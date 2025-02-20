@@ -54,7 +54,7 @@ const Header:React.FC<SectionProps> = ({ refProp }) => {
 
     return(
         <div ref={refProp || undefined} className="bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739048429/DIVE_EVOLUTION_2025/HEADER/background-min_hhsp6g.webp')] text-black bg-cover bg-center w-full h-screen text-[#97979d] flex flex-col justify-between overflow-hidden">
-			<Navbar></Navbar>
+			<Navbar change_items_color={false}></Navbar>
 			<div className="h-20"></div>
 			<div className='w-full flex flex-row justify-between items-start px-5 sm:px-10'>
 			    <h1 className={`${(isMobile && isLandscape) ? "text-[40px] leading-[40px]": (isMobile) ? "text-[40px] leading-[40px]" : "text-[90px] leading-[90px]"} font-semibold text-white`}>EXPLORA, <br/>SUMÉRGETE Y VIVE<br/>LA AVENTURA</h1>

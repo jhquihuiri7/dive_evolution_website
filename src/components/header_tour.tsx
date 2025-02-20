@@ -30,8 +30,8 @@ const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage }) => 
 			if (isLandscape === null) return null;
     return(
         <div className="w-full h-screen">
-			<div className='w-full h-[90%] bg-[#00273c] flex flex-col justify-between items-center'>
-			    <Navbar></Navbar>
+			<div className='w-full h-[90%] bg-[#0a1d39] flex flex-col justify-between items-center'>
+			    <Navbar change_items_color={true}></Navbar>
 			    <div className={`w-full h-screen flex ${(isLandscape ? "flex-row justify-between" : "flex-col")}`}>
 					<div className={`${(isLandscape && isMobile)? "w-1/2 pl-20 text-5xl": (isMobile) ? "w-full px-5 text-5xl" : "w-1/2 pl-20 text-6xl"} h-full  flex flex-col justify-center items-center text-white font-bold bg-center bg-no-repeat bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769936/DIVE_EVOLUTION_2025/HEADER/SANCRISTOBAL_daeo0k.png')]`}
 					style={{

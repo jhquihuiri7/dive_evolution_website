@@ -1,8 +1,11 @@
 "use client";
 import { Menu, X } from "lucide-react"; // Íconos de menú y cerrar
 import React, { FunctionComponent, useState, useEffect } from "react";
+interface NavbarProps {
+  change_items_color: boolean;
+}
 
-const Navbar: FunctionComponent = () => {
+const Navbar: FunctionComponent<NavbarProps> = ({ change_items_color }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
@@ -73,7 +76,7 @@ const Navbar: FunctionComponent = () => {
                   <a
                     href={url}
                     className={`block px-4 py-2 md:p-0 ${
-                      scrolled ? "text-black" : menuOpen ? "text-black" : "text-white"
+                      scrolled ? "text-black" : menuOpen ? "text-black" : change_items_color ?  "text-black" : "text-white"
                     }`}
                   >
                     {text}
