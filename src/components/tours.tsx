@@ -23,11 +23,31 @@ const Tour: FunctionComponent<TourProps> = ({ title, description, description_sh
     triggerOnce: true, // Solo disparar la animación una vez cuando entra en la vista
     threshold: 0.5, // El componente debe estar al menos al 50% visible para activar la animación
   });
- 
+  const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
+          const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
+              
+          useEffect(() => {
+              if (typeof window !== "undefined") {
+                  const checkIfMobile = window.innerWidth <= 900; // Definir un límite para dispositivos móviles
+                  setIsMobile(checkIfMobile); // Actualizar el estado según el tamaño de la ventana
+      
+                  setIsLandscape(window.innerWidth > window.innerHeight);
+                  
+                  const handleResize = () => {
+                      setIsMobile(window.innerWidth <= 900); // Verificar en cada redimensionado si es móvil
+                      setIsLandscape(window.innerWidth > window.innerHeight);
+                  };
+      
+                  window.addEventListener("resize", handleResize);
+                  return () => window.removeEventListener("resize", handleResize);
+              }
+          }, []);
+      
+          if (isLandscape === null) return null;
   return (
     <div
       ref={ref} // Asignar el ref a este div
-      className={`h-fit w-[29%] rounded-xl overflow-hidden shadow-lg flex flex-col justify-center items-center transition-all duration-500 ease-in-out transform hover:scale-110 ${
+      className={`h-fit ${(isMobile && !isLandscape) ? "w-full mb-5":"w-[29%]" } rounded-xl overflow-hidden shadow-lg flex flex-col justify-center items-center transition-all duration-500 ease-in-out transform hover:scale-110 ${
         inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
       }`} // Animación: cuando entra en la vista, se desvanece y se desplaza hacia arriba
     >
@@ -102,7 +122,7 @@ const Tours: FunctionComponent<ToursProps> = ({ tourList }) => {
       
           if (isLandscape === null) return null;
   return (
-    <div className={`${(isLandscape && isMobile) ? "px-5" : "px-[10%]"} my-10 w-full h-fit flex flex-row justify-around flex-wrap`}>
+    <div className={`${(isLandscape && isMobile) ? "px-5" : "px-[10%]"} my-10 w-full h-fit flex ${(isMobile && !isLandscape) ? "flex-col justify-center items-center":"flex-row justify-around"} flex-wrap`}>
       {tourList.map((tour, index) => (
         <Tour
           key={index}
