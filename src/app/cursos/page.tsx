@@ -70,7 +70,7 @@ const coursesList = [
 export default function Home() {
   return (
     <div>
-      <HeaderTour backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739996933/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5-min_me12u2.webp"/>
+      <HeaderTour title="Sumérgete y vive la experiencia." backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739996933/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5-min_me12u2.webp"/>
       <Tours tourList={coursesList}/>
       <Footer/>
     </div>

@@ -18,7 +18,7 @@ const Opinions: React.FC<SectionProps> = ({ refProp }) => {
   useEffect(() => {
     const interval = setInterval(() => {
       setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    }, 5000);
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -42,8 +42,8 @@ const Opinions: React.FC<SectionProps> = ({ refProp }) => {
   if (isLandscape === null) return null;
   return (
     <div ref={refProp} className='h-screen w-full bg-[url("https://res.cloudinary.com/logicielapplab/image/upload/v1739079631/DIVE_EVOLUTION_2025/REVIEWS/reviews_background_ozbzkr.webp")] bg-cover bg-center flex flex-col justify-center items-center'>
-      <div className={`px-20 ${(isMobile && isLandscape) ? "w-[80%] h-[70%] mt-10": (isMobile) ? "w-[70%] h-[70%] px-5" : "w-[50%] h-[60%]"} bg-white py-10 flex flex-col justify-around items-center`}>
-        <h3 className={`${(isMobile && isLandscape) ? "text-[30px] leading-[35px]" : (isMobile) ? "text-[30px] leading-[35px]" : "text-[40px] leading-[45px]"} font-black`}>¿QUE DICEN NUESTROS CLIENTES DE NOSOTROS?</h3>
+      <div className={`px-20 py-10 ${(isMobile && isLandscape) ? "w-[85%] h-[70%] mt-10 py-5": (isMobile) ? "w-[70%] h-[70%] px-5" : "w-[50%] h-[60%]"} bg-white flex flex-col justify-around items-center`}>
+        <h3 className={`text-center ${(isMobile && isLandscape) ? "text-[30px] leading-[30px]" : (isMobile) ? "text-[30px] leading-[35px]" : "text-[40px] leading-[45px]"} font-black`}>¿QUE DICEN NUESTROS CLIENTES DE NOSOTROS?</h3>
         <div className='w-full flex flex-row justify-between'>
             <span className='font-bold text-6xl text-black'>&ldquo;</span>
             <p className='italic text-gray-600 text-center px-[5%] pt-10'>{reviews[index].review}</p>

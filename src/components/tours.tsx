@@ -98,8 +98,8 @@ interface ToursProps {
 }
 
 // Componente Tours
-const Tours: FunctionComponent<ToursProps> = ({ tourList }) => {
-  
+const Tours: FunctionComponent<ToursProps> = ({ tourList}) => {
+
   const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
           const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
               

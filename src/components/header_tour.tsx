@@ -4,9 +4,10 @@ import Navbar from './navbar';
 
 type HeaderTourProps = {
     backgroundImage: string;
+	title: string;
 };
 
-const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage }) => {
+const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage, title }) => {
     const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
 			const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
 				
@@ -37,7 +38,7 @@ const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage }) => 
 					style={{
 						backgroundSize: '100%',
 					  }}>
-					    Encuentra destinos maravisollos en San Cristobal
+					    {title}
 					</div>
 					<div
                       className={`${isLandscape ? "w-1/2 bg-left" : "w-full bg-center"} h-screen bg-cover`}

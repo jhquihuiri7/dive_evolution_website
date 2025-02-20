@@ -55,7 +55,7 @@ const tourList = [
 export default function Home() {
   return (
     <div>
-      <HeaderTour backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"/>
+      <HeaderTour title="Encuentra destinos maravisollos en San Cristobal" backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"/>
       <Tours tourList={tourList}/>
       <Footer/>
     </div>

@@ -60,9 +60,9 @@ const Header:React.FC<SectionProps> = ({ refProp }) => {
 			    <h1 className={`${(isMobile && isLandscape) ? "text-[40px] leading-[40px]": (isMobile) ? "text-[40px] leading-[40px]" : "text-[90px] leading-[90px]"} font-semibold text-white`}>EXPLORA, <br/>SUMÉRGETE Y VIVE<br/>LA AVENTURA</h1>
 			</div>
 			<div className='w-full sm:w-1/2'>
-				<div className= {`${(isMobile && isLandscape) ? "h-[80px] text-base": (isMobile) ? "h-[125px] text-lg": "h-[125px] text-2xl"} transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 
+				<div className= {`${(isMobile && isLandscape) ? "h-[80px] text-base": (isMobile) ? "h-[150px] text-lg": "h-[125px] text-2xl"} transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 
 				duration-700 ease-out w-2/3 sm:w-2/3 bg-[#ffc404] flex flex-row justify-left items-center px-5 sm:px-10`}>Descubre la magia del mundo submarino con quienes han hecho del buceo su vida. </div>
-				<div className={`${(isMobile && isLandscape) ? "h-[80px] text-sm": (isMobile) ? "h-[125px] text-base" : "h-[125px] text-lg"} transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 
+				<div className={`${(isMobile && isLandscape) ? "h-[80px] text-sm": (isMobile) ? "h-[150px] text-base" : "h-[125px] text-lg"} transition-transform transform ${show ? 'translate-x-0' : '-translate-x-full'} 
 				duration-700 ease-out w-full bg-[#ffc404] flex flex-row justify-between items-center px-5 sm:px-10`}>
 					<a href='https://www.youtube.com/' className='w-full'>
 					    <div className='flex flex-row justify-between items-center' >
