@@ -1,7 +1,9 @@
-import React, { FunctionComponent, useState, useEffect} from 'react';
-import { ShimmerButton } from './magicui/shimmer-button';
+"use client";
 
-const FormMap:FunctionComponent = () => {
+import React, { FunctionComponent, useState } from "react";
+import { ShimmerButton } from "./magicui/shimmer-button";
+
+const FormMap: FunctionComponent = () => {
   const [formData, setFormData] = useState({
     nombre: "",
     correo: "",
@@ -20,79 +22,63 @@ const FormMap:FunctionComponent = () => {
     console.log("Formulario enviado:", formData);
   };
 
-  const [isLandscape, setIsLandscape] = useState<boolean | null>(null);
-          const [isMobile, setIsMobile] = useState<boolean>(false); // Nuevo estado para identificar si es móvil
-              
-          useEffect(() => {
-              if (typeof window !== "undefined") {
-                  const checkIfMobile = window.innerWidth <= 900; // Definir un límite para dispositivos móviles
-                  setIsMobile(checkIfMobile); // Actualizar el estado según el tamaño de la ventana
-      
-                  setIsLandscape(window.innerWidth > window.innerHeight);
-                  
-                  const handleResize = () => {
-                      setIsMobile(window.innerWidth <= 900); // Verificar en cada redimensionado si es móvil
-                      setIsLandscape(window.innerWidth > window.innerHeight);
-                  };
-      
-                  window.addEventListener("resize", handleResize);
-                  return () => window.removeEventListener("resize", handleResize);
-              }
-          }, []);
-      
-          if (isLandscape === null) return null;
   return (
-    <div className={`w-full h-fit flex ${(isMobile && !isLandscape) ? "flex-col" : "flex-row"} justify-around my-10`}>
-        <div className={`${(isMobile && !isLandscape) ? "w-full" : "w-[40%]"}  bg-white p-6 rounded-lg shadow-lg`}>
-        <h2 className="text-xl font-bold mb-4">Contáctanos</h2>
-        <div>
-            <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block font-medium">Nombre</label>
-          <input
-            type="text"
-            name="nombre"
-            value={formData.nombre}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-medium">Correo</label>
-          <input
-            type="email"
-            name="correo"
-            value={formData.correo}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-            required
-          />
-        </div>
-        <div>
-          <label className="block font-medium">Mensaje</label>
-          <textarea
-            name="mensaje"
-            value={formData.mensaje}
-            onChange={handleChange}
-            className="w-full p-2 border rounded-lg"
-            rows={4}
-            required
-          ></textarea>
-        </div>
-        <ShimmerButton className="w-full text-black p-2 rounded-lg" background="rgba(255, 196, 4, 1)">Enviar</ShimmerButton>
-            </form>
-            </div>
-        </div>
-        <iframe 
-              width={`${(isMobile && !isLandscape) ? "100%" : "50%"}`}
-              height="500" 
-              id="gmap_canvas" 
-              src="https://maps.google.com/maps?q=-0.9015394,-89.6110842&z=19&output=embed">
-        </iframe>
+    <div className="my-10 flex h-fit w-full flex-col justify-around gap-6 px-4 sm:px-6 lg:flex-row lg:gap-0">
+      <div className="w-full rounded-lg bg-white p-6 shadow-lg lg:w-[40%]">
+        <h2 className="mb-4 text-xl font-bold">Contáctanos</h2>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="block font-medium">Nombre</label>
+            <input
+              type="text"
+              name="nombre"
+              value={formData.nombre}
+              onChange={handleChange}
+              className="w-full rounded-lg border p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-medium">Correo</label>
+            <input
+              type="email"
+              name="correo"
+              value={formData.correo}
+              onChange={handleChange}
+              className="w-full rounded-lg border p-2"
+              required
+            />
+          </div>
+
+          <div>
+            <label className="block font-medium">Mensaje</label>
+            <textarea
+              name="mensaje"
+              value={formData.mensaje}
+              onChange={handleChange}
+              className="w-full rounded-lg border p-2"
+              rows={4}
+              required
+            />
+          </div>
+
+          <ShimmerButton className="w-full rounded-lg p-2 text-black" background="rgba(255, 196, 4, 1)">
+            Enviar
+          </ShimmerButton>
+        </form>
+      </div>
+
+      <iframe
+        title="Mapa Dive Evolution"
+        className="h-[500px] w-full lg:w-1/2"
+        id="gmap_canvas"
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+        src="https://maps.google.com/maps?q=-0.9015394,-89.6110842&z=19&output=embed"
+      />
     </div>
-    
   );
-}
+};
 
 export default FormMap;
