@@ -16,7 +16,7 @@ const cardVariants = {
 const HeaderContact: FunctionComponent = () => {
   return (
     <div className="min-h-[100svh] w-full">
-      <Navbar change_items_color={true} />
+      <Navbar />
 
       <div className="relative flex min-h-[100svh] w-full flex-col justify-end bg-[#0a1d39] sm:flex-row">
         <div className="absolute flex h-1/2 w-full flex-row justify-start bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739940793/DIVE_EVOLUTION_2025/CONTACT/EB8A2103-min_tgdwz2.webp')] bg-cover bg-center sm:h-full sm:w-1/2" />

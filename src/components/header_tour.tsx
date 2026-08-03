@@ -12,7 +12,7 @@ const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage, title
   return (
     <div className="min-h-[100svh] w-full">
       <div className="flex min-h-[100svh] w-full flex-col items-center justify-between bg-[#0a1d39]">
-        <Navbar change_items_color={true} />
+        <Navbar />
 
         <div className="flex min-h-[100svh] w-full flex-col lg:flex-row lg:justify-between">
           <div

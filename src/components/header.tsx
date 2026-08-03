@@ -22,7 +22,7 @@ const Header: React.FC<SectionProps> = ({ refProp }) => {
       ref={refProp || undefined}
       className="flex min-h-[100svh] w-full flex-col justify-between overflow-hidden bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739048429/DIVE_EVOLUTION_2025/HEADER/background-min_hhsp6g.webp')] bg-cover bg-center text-[#97979d]"
     >
-      <Navbar change_items_color={false} />
+      <Navbar />
       <div className="h-20" />
 
       <div className="flex w-full flex-row items-start justify-between px-5 sm:px-10">
