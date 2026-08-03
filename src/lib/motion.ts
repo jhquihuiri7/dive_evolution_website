@@ -38,6 +38,24 @@ export function useReveals(scope?: RefObject<HTMLElement | null>) {
   }, [scope]);
 }
 
+/**
+ * true si el sistema pide reducir movimiento. Arranca en false para que el
+ * primer render coincida con el del servidor; se resuelve al montar.
+ * Para lo que se puede resolver en CSS está el @media de globals.css: esto
+ * es para lo que no llega, como los transforms que pinta JS por frame.
+ */
+export function useReducedMotion() {
+  const [reduced, setReduced] = useState(false);
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const apply = () => setReduced(mq.matches);
+    apply();
+    mq.addEventListener("change", apply);
+    return () => mq.removeEventListener("change", apply);
+  }, []);
+  return reduced;
+}
+
 /** true cuando se ha bajado más de `ratio` de la altura de pantalla. */
 export function useScrolledPast(ratio = 0.6) {
   const [past, setPast] = useState(false);

@@ -1,63 +1,60 @@
 "use client";
 
-import React, { RefObject, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useReducedMotion } from "@/lib/motion";
 
-const reviews = [
-  {
-    review:
-      "¡Increíble experiencia! Los instructores son muy profesionales y amigables. Desde el primer momento, me hicieron sentir seguro y cómodo, explicando cada detalle con paciencia. Definitivamente regresaré para más aventuras.",
-    author: "Carlos Mendoza 🤿🐠",
-  },
-  {
-    review:
-      "El mejor centro de buceo que he visitado. Los equipos estaban en perfecto estado, y la atención fue excepcional. La inmersión fue increíblemente clara, y pude ver una gran variedad de vida marina que jamás imaginé.",
-    author: "Laura Fernández 🌊✨",
-  },
-  {
-    review:
-      "Los paisajes submarinos eran espectaculares. Fue una experiencia mágica nadar entre peces de colores y arrecifes impresionantes. El equipo nos guió de manera profesional en todo momento.",
-    author: "José Ramírez 🤿🐠",
-  },
-  {
-    review:
-      "Me sentí seguro en todo momento. La seguridad es su prioridad número uno, y eso se nota. Las explicaciones previas a la inmersión fueron detalladas y fáciles de entender, lo que hizo que me relajara y disfrutara cada segundo.",
-    author: "Ana González 🔱🏝️",
-  },
+const REVIEWS = [
+  { review: "Increíble experiencia. Los instructores son muy profesionales y amigables. Desde el primer momento me hicieron sentir seguro y cómodo, explicando cada detalle con paciencia.", author: "Carlos Mendoza" },
+  { review: "El mejor centro de buceo que he visitado. Los equipos estaban en perfecto estado y la atención fue excepcional. La inmersión fue increíblemente clara.", author: "Laura Fernández" },
+  { review: "Los paisajes submarinos eran espectaculares. Fue mágico nadar entre peces de colores y arrecifes impresionantes, guiados de manera profesional en todo momento.", author: "José Ramírez" },
+  { review: "Me sentí seguro en todo momento. La seguridad es su prioridad número uno y se nota: las explicaciones previas fueron detalladas y fáciles de entender.", author: "Ana González" },
 ];
 
-interface SectionProps {
-  refProp: RefObject<HTMLDivElement>;
-}
-
-const Opinions: React.FC<SectionProps> = ({ refProp }) => {
-  const [index, setIndex] = useState(0);
+/** Testimonios sobrios: fade cruzado de 6.5s, sin saltos ni carrusel. */
+export default function Opinions() {
+  const [i, setI] = useState(0);
+  const [on, setOn] = useState(true);
+  const reduced = useReducedMotion();
 
   useEffect(() => {
-    const interval = window.setInterval(() => {
-      setIndex((prevIndex) => (prevIndex + 1) % reviews.length);
-    }, 3000);
-
-    return () => window.clearInterval(interval);
-  }, []);
+    // Con reducir movimiento no hay rotacion automatica: la opinion se cambia
+    // solo desde los puntos. El contenido sigue visible de entrada.
+    if (reduced) return;
+    let t = 0;
+    const id = setInterval(() => {
+      setOn(false);
+      t = window.setTimeout(() => { setI((v) => (v + 1) % REVIEWS.length); setOn(true); }, 300);
+    }, 6500);
+    return () => { clearInterval(id); window.clearTimeout(t); };
+  }, [reduced]);
 
   return (
-    <section
-      ref={refProp}
-      className='flex min-h-[100svh] w-full flex-col items-center justify-center bg-[url("https://res.cloudinary.com/logicielapplab/image/upload/v1739079631/DIVE_EVOLUTION_2025/REVIEWS/reviews_background_ozbzkr.webp")] bg-cover bg-center'
-    >
-      <div className="mt-10 flex h-[70%] w-[92%] flex-col items-center justify-around bg-white px-5 py-6 sm:w-[80%] sm:px-10 md:w-[70%] lg:h-[60%] lg:w-[50%] lg:px-20 lg:py-10">
-        <h3 className="text-center text-[28px] font-black leading-[34px] sm:text-[34px] sm:leading-[40px] lg:text-[40px] lg:leading-[45px]">
-          ¿QUE DICEN NUESTROS CLIENTES DE NOSOTROS?
-        </h3>
-        <div className="flex w-full flex-row justify-between">
-          <span className="text-5xl font-bold text-black sm:text-6xl">&ldquo;</span>
-          <p className="px-[5%] pt-6 text-center italic text-gray-600 sm:pt-10">{reviews[index].review}</p>
-          <span className="text-5xl font-bold text-black sm:text-6xl">&rdquo;</span>
+    <section id="opiniones" className="w-full bg-white px-5 py-24 sm:px-8 sm:py-32 lg:px-12 lg:py-44">
+      <div className="mx-auto max-w-[900px] text-center">
+        <div className="reveal mb-8 flex items-center justify-center gap-3 sm:mb-12">
+          <span className="block h-0.5 w-[26px] rounded-sm bg-[#ffc404]" />
+          <span className="text-[12px] font-medium uppercase tracking-[.16em] text-[#86868b]">Lo que dicen nuestros clientes</span>
         </div>
-        <p className="text-sm font-semibold">{reviews[index].author}</p>
+
+        <blockquote className="reveal m-0 flex min-h-[clamp(210px,26vh,260px)] flex-col justify-center" data-delay="60">
+          <p className="mb-7 text-[clamp(24px,3.4vw,44px)] font-normal leading-[1.22] tracking-[-0.035em] text-[#1d1d1f] transition-all duration-500 [text-wrap:pretty] sm:mb-8"
+             style={{ opacity: on ? 1 : 0, transform: on ? "none" : "translateY(8px)", transitionTimingFunction: "cubic-bezier(.25,.1,.25,1)" }}>
+            {REVIEWS[i].review}
+          </p>
+          <footer className="text-[15px] font-medium text-[#86868b] transition-opacity duration-500" style={{ opacity: on ? 1 : 0 }}>
+            {REVIEWS[i].author}
+          </footer>
+        </blockquote>
+
+        <div className="mt-8 flex justify-center gap-2 sm:mt-11">
+          {REVIEWS.map((_, k) => (
+            <button key={k} type="button" aria-label={`Opinión ${k + 1}`} onClick={() => setI(k)} className="flex h-11 w-11 items-center justify-center">
+              <span className="block h-[7px] w-[7px] rounded-full transition-all duration-500"
+                    style={{ background: k === i ? "#1d1d1f" : "#d2d2d7", transform: k === i ? "scale(1.28)" : "none", transitionTimingFunction: "cubic-bezier(.25,.1,.25,1)" }} />
+            </button>
+          ))}
+        </div>
       </div>
     </section>
   );
-};
-
-export default Opinions;
+}

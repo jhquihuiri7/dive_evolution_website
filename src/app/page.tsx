@@ -1,109 +1,41 @@
 "use client";
 
-import { RefObject, useEffect, useMemo, useRef, useState } from "react";
-import Image from "next/image";
+import { useRef } from "react";
+import Navbar from "@/components/navbar";
 import Header from "@/components/header";
-import Highlight from "@/components/highlight";
 import Nosotros from "@/components/nosotros";
+import Experiencias from "@/components/experiencias";
+import Highlight from "@/components/highlight";
 import Opinions from "@/components/opinions";
+import CtaBand from "@/components/ctaBand";
 import Footer from "@/components/footer";
-import { config } from "@fortawesome/fontawesome-svg-core";
-import "@fortawesome/fontawesome-svg-core/styles.css";
-import "./embla.css";
-
-config.autoAddCss = false;
+import { useReveals, WHATSAPP } from "@/lib/motion";
 
 export default function Home() {
-  const section1Ref = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
-  const section2Ref = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
-  const section3Ref = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
-  const section4Ref = useRef<HTMLDivElement>(null) as RefObject<HTMLDivElement>;
-  const timeoutRef = useRef<number | null>(null);
-
-  const sectionsRef = useMemo(
-    () => [section1Ref, section2Ref, section3Ref, section4Ref],
-    [section1Ref, section2Ref, section3Ref, section4Ref],
-  );
-
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isScrolling, setIsScrolling] = useState(false);
-
-  const scrollToSection = (index: number) => {
-    if (isScrolling || index < 0 || index >= sectionsRef.length) return;
-
-    if (timeoutRef.current) {
-      window.clearTimeout(timeoutRef.current);
-    }
-
-    setIsScrolling(true);
-    sectionsRef[index].current?.scrollIntoView({ behavior: "smooth" });
-
-    timeoutRef.current = window.setTimeout(() => {
-      setCurrentIndex(index);
-      setIsScrolling(false);
-    }, 600);
-  };
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (isScrolling) return;
-
-        for (const entry of entries) {
-          if (!entry.isIntersecting) continue;
-          const newIndex = sectionsRef.findIndex((ref) => ref.current === entry.target);
-          if (newIndex !== -1) setCurrentIndex(newIndex);
-          break;
-        }
-      },
-      { threshold: 0.5 },
-    );
-
-    sectionsRef.forEach((section) => {
-      if (section.current) observer.observe(section.current);
-    });
-
-    return () => {
-      observer.disconnect();
-      if (timeoutRef.current) window.clearTimeout(timeoutRef.current);
-    };
-  }, [isScrolling, sectionsRef]);
+  const scope = useRef<HTMLDivElement>(null);
+  useReveals(scope);
 
   return (
-    <div>
-      <div className="fixed right-3 top-1/2 z-40 hidden -translate-y-1/2 transform flex-col gap-3 sm:flex sm:right-5 sm:gap-4">
-        <button
-          type="button"
-          onClick={() => scrollToSection(currentIndex - 1)}
-          disabled={currentIndex === 0}
-          className={`cursor-pointer ${
-            currentIndex === 0 ? "cursor-not-allowed opacity-50" : "transition hover:scale-110"
-          }`}
-          aria-label="Ir a la seccion anterior"
-        >
-          <Image src="/images/diveIcon.png" alt="Anterior" width={40} height={40} />
-        </button>
-
-        <button
-          type="button"
-          onClick={() => scrollToSection(currentIndex + 1)}
-          disabled={currentIndex === sectionsRef.length - 1}
-          className={`cursor-pointer ${
-            currentIndex === sectionsRef.length - 1
-              ? "cursor-not-allowed opacity-50"
-              : "transition hover:scale-110"
-          }`}
-          aria-label="Ir a la siguiente seccion"
-        >
-          <Image src="/images/tourIcon.png" alt="Siguiente" width={40} height={40} />
-        </button>
-      </div>
-
-      <Header refProp={section1Ref} />
-      <Nosotros refProp={section2Ref} />
-      <Highlight refProp={section3Ref} />
-      <Opinions refProp={section4Ref} />
+    <div ref={scope}>
+      <Navbar />
+      <Header />
+      <Nosotros />
+      {/* Scroll storytelling: sustituye a los botones de salto entre secciones */}
+      <Experiencias />
+      <Highlight />
+      <Opinions />
+      <CtaBand />
       <Footer />
+
+      {/* CTA de reserva siempre accesible */}
+      <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" aria-label="Reservar por WhatsApp"
+         className="fixed bottom-4 right-4 z-[70] inline-flex min-h-[52px] items-center gap-2.5 rounded-full bg-[rgba(255,196,4,.94)] px-5 text-[16px] font-semibold text-[#0a1d39] shadow-[0_10px_34px_rgba(0,0,0,.22)] backdrop-blur-xl backdrop-saturate-[1.8] transition-transform duration-500 hover:-translate-y-0.5 hover:scale-[1.03] sm:bottom-8 sm:right-8"
+         style={{ transitionTimingFunction: "cubic-bezier(.25,.1,.25,1)" }}>
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
+          <path d="M12.05 2C6.5 2 2 6.5 2 12.05a10 10 0 0 0 1.37 5.05L2 22l5.05-1.32a10 10 0 0 0 5 1.27h.01c5.54 0 10.04-4.5 10.04-10.05C22.1 6.5 17.6 2 12.05 2Zm0 18.13h-.01a8.35 8.35 0 0 1-4.25-1.16l-.3-.18-3 .78.8-2.92-.2-.3a8.32 8.32 0 0 1-1.28-4.45c0-4.6 3.75-8.35 8.36-8.35 2.23 0 4.33.87 5.9 2.45a8.3 8.3 0 0 1 2.45 5.9c0 4.6-3.75 8.23-8.47 8.23Z" />
+        </svg>
+        Reservar
+      </a>
     </div>
   );
 }
