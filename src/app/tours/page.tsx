@@ -13,7 +13,7 @@ const tourList: Tour[] = [
     imageUrl:
       "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/upscalemedia-transformed_1_q8skaz.webp",
     type: "Tour Diario",
-    include: ["Guia Certificado", "Almuerzo y Snacks"],
+    include: ["Guía Certificado", "Almuerzo y Snacks"],
   },
   {
     title: "Tour Isla Española",
@@ -24,7 +24,7 @@ const tourList: Tour[] = [
     type: "Tour Diario",
     imageUrl:
       "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/TOUR_ESPA%C3%91OLA_jlqwl2_1_a9o078.webp",
-    include: ["Guia Certificado", "Almuerzo y Snacks"],
+    include: ["Guía Certificado", "Almuerzo y Snacks"],
   },
   {
     title: "Tour Panga Ride",
@@ -35,7 +35,7 @@ const tourList: Tour[] = [
     type: "Tour Diario",
     imageUrl:
       "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/upscalemedia-transformed_2_1_bjapgc.webp",
-    include: ["Guia Certificado", "Transporte acuático"],
+    include: ["Guía Certificado", "Transporte acuático"],
   },
 ];
 
@@ -43,7 +43,7 @@ export default function ToursPage() {
   return (
     <div>
       <HeaderTour
-        title="Encuentra destinos maravillosos en San Cristobal"
+        title="Encuentra destinos maravillosos en San Cristóbal"
         backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"
       />
       <Reveals />
