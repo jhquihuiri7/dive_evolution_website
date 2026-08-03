@@ -1,120 +1,57 @@
-"use client";
+import { WHATSAPP } from "@/lib/motion";
 
-import React, { FunctionComponent } from "react";
-import Image from "next/image";
-import { ShimmerButton } from "./magicui/shimmer-button";
-import { useInView } from "react-intersection-observer";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
+export type Tour = {
+  title: string; type: string; price: number;
+  description: string; description_short: string;
+  include: string[]; imageUrl: string;
+};
 
-interface TourProps {
-  title: string;
-  description: string;
-  description_short: string;
-  type: string;
-  price: number;
-  imageUrl: string;
-  include: { icon: IconDefinition; item: string }[];
-}
-
-const Tour: FunctionComponent<TourProps> = ({
-  title,
-  description,
-  description_short,
-  type,
-  price,
-  imageUrl,
-  include,
-}) => {
-  const { ref, inView } = useInView({
-    triggerOnce: true,
-    threshold: 0.25,
-  });
-
+/** Card de tour: imagen protagonista, chip de vidrio, precio con jerarquía clara. */
+function TourCard({ t }: { t: Tour }) {
   return (
-    <div
-      ref={ref}
-      className={`mb-5 flex h-fit w-full flex-col items-center justify-center overflow-hidden rounded-xl shadow-lg transition-all duration-500 ease-in-out md:w-[48%] xl:w-[29%] xl:hover:scale-[1.03] ${
-        inView ? "translate-y-0 opacity-100" : "translate-y-10 opacity-0"
-      }`}
-    >
-      <div className="relative h-[220px] w-full">
-        <Image
-          src={imageUrl}
-          alt={title}
-          fill
-          className="object-cover"
-          sizes="(max-width: 767px) 100vw, (max-width: 1279px) 48vw, 29vw"
-        />
-
-        <div className="absolute inset-0 flex flex-col items-start justify-start pl-5 pt-5 text-xl font-bold text-white">
-          <div className="flex flex-row">
-            <Image src="/logo.png" alt="Logo Dive Evolution" width={32} height={32} className="mr-1 h-8 w-8 object-contain" />
-            <span className="text-sm leading-[12px] text-white">
-              Dive <br className="my-0" />
-              Evolution
-            </span>
-          </div>
-          <span className="my-2 uppercase font-black">{type}</span>
-        </div>
+    <article className="reveal group flex min-w-[280px] flex-1 basis-[320px] flex-col overflow-hidden rounded-[26px] border border-[#ececf0] bg-white shadow-[0_1px_2px_rgba(0,0,0,.03),0_14px_36px_rgba(0,0,0,.06)] transition-all duration-500 hover:-translate-y-1.5 hover:shadow-[0_2px_8px_rgba(0,0,0,.05),0_28px_66px_rgba(0,0,0,.13)]"
+             style={{ transitionTimingFunction: "cubic-bezier(.25,.1,.25,1)" }}>
+      <div className="relative aspect-[16/11] overflow-hidden bg-[#e8e8ed]">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img src={t.imageUrl} alt={t.title} loading="lazy"
+             className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.06]"
+             style={{ transitionTimingFunction: "cubic-bezier(.25,.1,.25,1)" }} />
+        <span className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,.42)_0%,rgba(0,0,0,0)_42%)]" />
+        <span className="absolute left-[18px] top-[18px] inline-flex whitespace-nowrap rounded-full border border-white/25 bg-white/15 px-3.5 py-1.5 text-[11.5px] font-medium uppercase tracking-[.1em] text-white backdrop-blur-md backdrop-saturate-[1.8]">
+          {t.type}
+        </span>
       </div>
 
-      <div className="flex w-full flex-row pl-5">
-        <div className="relative -top-4 rounded-xl bg-[#ffc404] px-5 py-1 uppercase">{title}</div>
-      </div>
+      <div className="flex flex-1 flex-col p-6 sm:p-7">
+        <h3 className="mb-2 text-[clamp(24px,2.2vw,30px)] font-semibold leading-tight tracking-[-0.03em] text-[#1d1d1f]">{t.title}</h3>
+        <p className="mb-2.5 text-[17px] font-medium leading-snug tracking-[-0.02em] text-[#1d1d1f]">{t.description}</p>
+        <p className="mb-5 text-[15px] font-light leading-relaxed text-[#86868b] [text-wrap:pretty]">{t.description_short}</p>
 
-      <div className="flex w-full flex-col items-center justify-center px-5 pb-5">
-        <div className="flex flex-col items-start justify-start">
-          <span className="text-base font-bold">{description}</span>
-          <span className="text-justify text-sm font-bold text-gray-500">{description_short}</span>
-        </div>
-
-        <div className="mt-5 flex w-full flex-col items-start justify-center text-justify text-base">
-          {include.map((item, idx) => (
-            <div key={idx} className="flex flex-row text-sm" style={{ color: idx === 0 ? "green" : "black" }}>
-              <div className="w-5">
-                <FontAwesomeIcon icon={item.icon} />
-              </div>{" "}
-              {item.item}
-            </div>
+        <div className="mb-6 flex flex-wrap gap-2">
+          {t.include.map((i) => (
+            <span key={i} className="inline-flex rounded-full bg-[#f5f5f7] px-3.5 py-1.5 text-[13px] text-[#4b4b50]">{i}</span>
           ))}
         </div>
 
-        <div className="flex w-full flex-col items-end justify-center">
-          <span className="text-sm text-gray-500">Desde:</span>
-          <span className="text-2xl">
-            ${price}
-            <span className="text-base">,00</span>
-          </span>
+        <div className="mt-auto flex items-end justify-between gap-4 border-t border-[#ececf0] pt-5">
+          <div>
+            <span className="block text-[12.5px] text-[#86868b]">Desde</span>
+            <span className="text-[30px] font-semibold tracking-[-0.035em] text-[#1d1d1f]">${t.price}</span>
+          </div>
+          <a href={WHATSAPP} target="_blank" rel="noopener noreferrer"
+             className="inline-flex min-h-[44px] items-center rounded-full bg-[#0a1d39] px-5 text-[15px] font-medium text-white transition-transform duration-300 hover:-translate-y-px hover:scale-[1.03]">
+            Reservar
+          </a>
         </div>
-
-        <ShimmerButton>Ver más</ShimmerButton>
       </div>
-    </div>
+    </article>
   );
-};
-
-interface ToursProps {
-  tourList: TourProps[];
 }
 
-const Tours: FunctionComponent<ToursProps> = ({ tourList }) => {
+export default function Tours({ tourList }: { tourList: Tour[] }) {
   return (
-    <div className="my-10 flex h-fit w-full flex-wrap justify-center gap-5 px-4 sm:px-6 lg:px-[10%] xl:justify-around">
-      {tourList.map((tour, index) => (
-        <Tour
-          key={index}
-          title={tour.title}
-          description={tour.description}
-          description_short={tour.description_short}
-          price={tour.price}
-          imageUrl={tour.imageUrl}
-          include={tour.include}
-          type={tour.type}
-        />
-      ))}
+    <div className="mx-auto flex max-w-[1280px] flex-wrap gap-5 px-5 sm:px-8 lg:gap-7 lg:px-12">
+      {tourList.map((t) => <TourCard key={t.title} t={t} />)}
     </div>
   );
-};
-
-export default Tours;
+}
