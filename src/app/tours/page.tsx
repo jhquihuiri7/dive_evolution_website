@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import HeaderTour from "@/components/header_tour";
+import Reveals from "@/components/reveals";
 import Tours, { type Tour } from "@/components/tours";
 
 const tourList: Tour[] = [
@@ -45,6 +46,7 @@ export default function ToursPage() {
         title="Encuentra destinos maravillosos en San Cristobal"
         backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"
       />
+      <Reveals />
       <section className="w-full bg-white py-24 sm:py-32 lg:py-44">
         <Tours tourList={tourList} />
       </section>

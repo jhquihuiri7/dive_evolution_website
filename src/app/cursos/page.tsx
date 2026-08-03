@@ -1,5 +1,6 @@
 import Footer from "@/components/footer";
 import HeaderTour from "@/components/header_tour";
+import Reveals from "@/components/reveals";
 import Tours, { type Tour } from "@/components/tours";
 
 const coursesList: Tour[] = [
@@ -56,6 +57,7 @@ export default function CursosPage() {
         title="Sumérgete y vive la experiencia."
         backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739996933/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5-min_me12u2.webp"
       />
+      <Reveals />
       <section className="w-full bg-white py-24 sm:py-32 lg:py-44">
         <Tours tourList={coursesList} />
       </section>
