@@ -1,13 +1,9 @@
-
 import Footer from "@/components/footer";
 import HeaderTour from "@/components/header_tour";
-import Tours from "@/components/tours";
-import { config } from '@fortawesome/fontawesome-svg-core'
-import '@fortawesome/fontawesome-svg-core/styles.css'
-import { faUserShield, faUtensils } from '@fortawesome/free-solid-svg-icons';
-config.autoAddCss = false
+import Reveals from "@/components/reveals";
+import Tours, { type Tour } from "@/components/tours";
 
-const tourList = [
+const tourList: Tour[] = [
   {
     title: "Tour 360",
     description: "Descubre cada rincón oculto de San Cristóbal",
@@ -17,10 +13,7 @@ const tourList = [
     imageUrl:
       "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/upscalemedia-transformed_1_q8skaz.webp",
     type: "Tour Diario",
-    include: [
-      { icon: faUserShield, item: "Guia Certificado" },
-      { icon: faUtensils, item: "Almuerzo y Snacks" }
-    ],
+    include: ["Guía Certificado", "Almuerzo y Snacks"],
   },
   {
     title: "Tour Isla Española",
@@ -31,10 +24,7 @@ const tourList = [
     type: "Tour Diario",
     imageUrl:
       "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/TOUR_ESPA%C3%91OLA_jlqwl2_1_a9o078.webp",
-    include: [
-      { icon: faUserShield, item: "Guia Certificado" },
-      { icon: faUtensils, item: "Almuerzo y Snacks" }
-    ],
+    include: ["Guía Certificado", "Almuerzo y Snacks"],
   },
   {
     title: "Tour Panga Ride",
@@ -45,19 +35,22 @@ const tourList = [
     type: "Tour Diario",
     imageUrl:
       "https://res.cloudinary.com/logicielapplab/image/upload/v1739994968/DIVE_EVOLUTION_2025/TOUR/upscalemedia-transformed_2_1_bjapgc.webp",
-    include: [
-      { icon: faUserShield, item: "Guia Certificado" },
-      { icon: faUtensils, item: "Transporte acuático" }
-    ],
-  }
+    include: ["Guía Certificado", "Transporte acuático"],
+  },
 ];
 
-export default function Home() {
+export default function ToursPage() {
   return (
     <div>
-      <HeaderTour title="Encuentra destinos maravisollos en San Cristobal" backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"/>
-      <Tours tourList={tourList}/>
-      <Footer/>
+      <HeaderTour
+        title="Encuentra destinos maravillosos en San Cristóbal"
+        backgroundImage="https://res.cloudinary.com/logicielapplab/image/upload/v1739769164/DIVE_EVOLUTION_2025/HEADER/EB8A1884_ujrmg5.png"
+      />
+      <Reveals />
+      <section className="w-full bg-white py-24 sm:py-32 lg:py-44">
+        <Tours tourList={tourList} />
+      </section>
+      <Footer />
     </div>
   );
 }

@@ -1,35 +1,56 @@
 "use client";
 
-import React, { FunctionComponent } from "react";
 import Navbar from "./navbar";
+import { useParallax } from "@/lib/motion";
+
+const MAPA =
+  "https://res.cloudinary.com/logicielapplab/image/upload/v1739769936/DIVE_EVOLUTION_2025/HEADER/SANCRISTOBAL_daeo0k.png";
 
 type HeaderTourProps = {
   backgroundImage: string;
   title: string;
 };
 
-const HeaderTour: FunctionComponent<HeaderTourProps> = ({ backgroundImage, title }) => {
+/**
+ * Hero dividido: panel navy con el mapa de la isla a la izquierda e imagen
+ * full-bleed con parallax a la derecha. En movil se apilan.
+ */
+export default function HeaderTour({ backgroundImage, title }: HeaderTourProps) {
+  const img = useParallax<HTMLDivElement>(0.32);
+
   return (
-    <div className="min-h-[100svh] w-full">
-      <div className="flex min-h-[100svh] w-full flex-col items-center justify-between bg-[#0a1d39]">
-        <Navbar change_items_color={true} />
+    <section className="relative w-full bg-[#0a1d39]">
+      <Navbar />
 
-        <div className="flex min-h-[100svh] w-full flex-col lg:flex-row lg:justify-between">
+      <div className="flex w-full flex-col lg:flex-row">
+        {/* Panel navy. El py-24 deja libres los 76px del nav en movil. */}
+        <div className="relative flex min-h-[52svh] w-full flex-col justify-center overflow-hidden bg-[#0a1d39] px-5 py-24 sm:px-8 sm:py-32 lg:min-h-[100svh] lg:w-1/2 lg:px-12 lg:py-44">
           <div
-            className="flex min-h-[50svh] w-full flex-col items-center justify-center bg-[url('https://res.cloudinary.com/logicielapplab/image/upload/v1739769936/DIVE_EVOLUTION_2025/HEADER/SANCRISTOBAL_daeo0k.png')] bg-center bg-no-repeat px-6 text-center text-4xl font-bold text-white sm:px-12 sm:text-5xl lg:min-h-[100svh] lg:w-1/2 lg:items-start lg:px-20 lg:text-start lg:text-6xl"
-            style={{ backgroundSize: "100%" }}
-          >
-            {title}
-          </div>
-
-          <div
-            className="min-h-[50svh] w-full bg-cover bg-center lg:min-h-[100svh] lg:w-1/2 lg:bg-left"
-            style={{ backgroundImage: `url(${backgroundImage})` }}
+            className="pointer-events-none absolute inset-0 bg-contain bg-center bg-no-repeat opacity-[.16]"
+            style={{ backgroundImage: `url('${MAPA}')` }}
           />
+          <div className="relative z-[2]">
+            <span className="mb-[18px] block h-[3px] w-[38px] rounded-sm bg-[#ffc404]" />
+            <h1 className="text-[clamp(32px,4.6vw,68px)] font-semibold leading-[1.05] tracking-[-0.04em] text-white [text-wrap:balance]">
+              {title}
+            </h1>
+          </div>
+        </div>
+
+        {/* Panel de imagen con dos overlays */}
+        <div className="relative min-h-[48svh] w-full overflow-hidden lg:min-h-[100svh] lg:w-1/2">
+          <div
+            ref={img}
+            className="absolute inset-x-0 -top-[14%] -bottom-[14%] bg-cover bg-center will-change-transform"
+            style={{ backgroundImage: `url('${backgroundImage}')` }}
+          />
+          {/* Degradado horizontal: empalma con el panel navy */}
+          <div className="absolute inset-0 bg-[linear-gradient(105deg,rgba(4,9,15,.88)_0%,rgba(4,9,15,.6)_42%,rgba(4,9,15,.15)_72%,rgba(4,9,15,.5)_100%)]" />
+          {/* Scrim vertical superior: sin el, los enlaces del nav se pierden
+              sobre las zonas claras de la foto (el reflejo del sol en /cursos) */}
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(4,9,15,.55)_0%,rgba(4,9,15,0)_22%)]" />
         </div>
       </div>
-    </div>
+    </section>
   );
-};
-
-export default HeaderTour;
+}
